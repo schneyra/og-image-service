@@ -1,4 +1,4 @@
-const Image = require("@11ty/eleventy-img");
+const sharp = require('sharp');
 
 module.exports = async function createOgImage(title) {
     let titleAsArray = title.split(" ");
@@ -42,10 +42,9 @@ module.exports = async function createOgImage(title) {
 
     var buffer = Buffer.from(svg(firstPartOfTitle, titleAsArray));
 
-    const ogImage = await Image(buffer, {
-        widths: [2400],
-        formats: ["jpg"]
-    });
+    const ogImage = await sharp(buffer)
+      .jpeg({ mozjpeg: true })
+      .toBuffer();
 
     return ogImage;
 };

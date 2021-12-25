@@ -10,21 +10,17 @@ async function handler(event, context) {
   if (site !== 'msme') { return; }
 
   try {
-    console.log("Generating OG for martinschneider.me");
+    console.log(`Generating OG for martinschneider.me with "${decodeURIComponent(content)}"`);
 
-    const stats = await createOgImage(decodeURIComponent(content));
-
-    let format = Object.keys(stats).pop();
-    let stat = stats[format][0];
+    const buffer = await createOgImage(decodeURIComponent(content));
 
     return {
       statusCode: 200,
       headers: {
-        "content-type": "application/json",
+        "content-type": 'image/jpeg',
       },
-      body: JSON.stringify({
-        url: `https://og-image.martinschneider.me${stat.url}`
-      })
+      body: buffer.toString("base64"),
+      isBase64Encoded: true
     };
   } catch (error) {
     console.log("Error", error);
@@ -35,7 +31,7 @@ async function handler(event, context) {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        message: `Error`
+        message: `Error: ${error}`
       })
     };
   }
