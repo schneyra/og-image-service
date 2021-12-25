@@ -1,4 +1,6 @@
 const sharp = require('sharp');
+const TextToSVG = require('text-to-svg');
+const textToSVG = TextToSVG.loadSync();
 
 module.exports = async function createOgImage(title) {
     let titleAsArray = title.split(" ");
@@ -10,6 +12,17 @@ module.exports = async function createOgImage(title) {
             Math.floor(titleAsArray.length / 2)
         );
     }
+
+    const optionsTitle1 = {x: 75, y: 200, fontSize: 50, attributes: {fill: 'hsl(0, 0%, 95%)'}}; //390
+    const optionsTitle2 = {x: 75, y: 250, fontSize: 50, attributes: {fill: 'hsl(0, 0%, 95%)'}}; // 445
+     
+    const title1 = textToSVG.getPath(firstPartOfTitle.join(" "), optionsTitle1);
+    const title2 = textToSVG.getPath(titleAsArray.join(" "), optionsTitle2);
+     
+    const optionsWebsite = {x: 75, y: 300, fontSize: 30, attributes: {fill: 'hsl(180, 60%, 75%)'}}; // 520
+    const website = textToSVG.getPath('martinschneider.me', optionsWebsite);
+
+
 
     let svg = (firstPartOfTitle, titleAsArray) => `
         <svg width="2400" height="1200" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +44,10 @@ module.exports = async function createOgImage(title) {
             <rect width="100" height="100" x="1025" y="50" fill="url('#primaryGradient')"/> 
             <rect width="100" height="100" x="1050" y="75" fill="url('#secondaryGradient')"/>
 
-            <text x="75" y="200" fill="hsl(0, 0%, 95%)">TEST</text>
+            ${title1}
+            ${title2}
+            ${website}
+
 
             <text x="75" y="390" text-anchor="left" font-size="50px" font-family="sans-serif" fill="hsl(0, 0%, 95%)" text-rendering="optimizeLegibility">${firstPartOfTitle.join(
                 " "
