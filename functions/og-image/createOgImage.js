@@ -30,6 +30,9 @@ module.exports = async function createOgImage(title) {
             <rect width="1200" height="600" fill="hsl(216, 25%, 8%)"/> 
             <rect width="100" height="100" x="1025" y="50" fill="url('#primaryGradient')"/> 
             <rect width="100" height="100" x="1050" y="75" fill="url('#secondaryGradient')"/>
+
+            <text x="75" y="200" fill="hsl(0, 0%, 95%)">TEST</text>
+
             <text x="75" y="390" text-anchor="left" font-size="50px" font-family="sans-serif" fill="hsl(0, 0%, 95%)" text-rendering="optimizeLegibility">${firstPartOfTitle.join(
                 " "
             )}</text>
