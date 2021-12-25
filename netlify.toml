@@ -1,8 +1,10 @@
 [functions]
-directory = "functions"
+    directory = "functions"
+    included_files = ["fonts/**"]
+
 
 [[redirects]]
-from = "/og-image/*"
-to = "/.netlify/functions/og-image"
-status = 200
-force = true
+    from = "/og-image/*"
+    to = "/.netlify/functions/og-image"
+    status = 200
+    force = true
