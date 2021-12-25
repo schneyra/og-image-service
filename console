@@ -1,0 +1,24 @@
+case "$1" in
+        start)
+            docker-compose up -d
+            ;;
+        stop)
+            docker-compose down
+            ;;
+        node)
+            shift
+            docker exec -ti og-image-service_node node $@
+            ;; 
+        npx)
+            shift
+            docker exec -ti og-image-service_node npx $@
+            ;;  
+        npm)
+            shift
+            docker exec -ti og-image-service_node npm $@
+            ;;
+        netlify)
+            shift
+            docker exec -ti og-image-service_node npx netlify $@
+            ;;
+esac

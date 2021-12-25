@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+    node:
+        container_name: og-image-service_node
+        image: node:14
+        platform: linux/x86_64
+        working_dir: /home/node/app
+        volumes:
+            - .:/home/node/app:cached
+        command: tail -f /dev/null
+        ports:
+            - 80:8080
+            - 8888:8888
