@@ -5,7 +5,7 @@ async function handler(event, context) {
   let pathSplit = event.path.split("/").filter(entry => !!entry);
   console.log(pathSplit);
 
-  let [myfunction, site, content] = pathSplit;
+  let [site, content] = pathSplit;
 
   if (site !== 'msme') { return; }
 

@@ -1,8 +1,8 @@
-const path = require('path');
 const sharp = require('sharp');
 const TextToSVG = require('text-to-svg');
 
 module.exports = async function createOgImage(title) {
+    // split the given text into two parts
     let titleAsArray = title.split(" ");
     let firstPartOfTitle = [];
 

@@ -4,7 +4,7 @@
 
 
 [[redirects]]
-    from = "/og-image/*"
+    from = "/*"
     to = "/.netlify/functions/og-image"
     status = 200
     force = true
