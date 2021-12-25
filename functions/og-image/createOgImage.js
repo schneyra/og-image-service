@@ -1,3 +1,4 @@
+const path = require('path');
 const sharp = require('sharp');
 const TextToSVG = require('text-to-svg');
 
@@ -13,7 +14,7 @@ module.exports = async function createOgImage(title) {
     }
 
     // Title
-    let textToSVG = TextToSVG.loadSync('./functions/og-image/IBMPlexSans-Semibold.otf');
+    let textToSVG = TextToSVG.loadSync(path.join(__dirname, 'IBMPlexSans-Semibold.otf'));
 
     const optionsTitle1 = {x: 75, y: 390, fontSize: 50, attributes: {fill: 'hsl(0, 0%, 95%)'}};
     const optionsTitle2 = {x: 75, y: 445, fontSize: 50, attributes: {fill: 'hsl(0, 0%, 95%)'}};
@@ -22,7 +23,7 @@ module.exports = async function createOgImage(title) {
     const title2 = textToSVG.getPath(titleAsArray.join(" "), optionsTitle2);
      
     // Website
-    textToSVG = TextToSVG.loadSync('./functions/og-image/IBMPlexSans-Regular.otf');
+    textToSVG = TextToSVG.loadSync(path.join(__dirname, 'IBMPlexSans-Regular.otf'));
 
     const optionsWebsite = {x: 75, y: 520, fontSize: 30, attributes: {fill: 'hsl(180, 60%, 75%)'}};
     const website = textToSVG.getPath('martinschneider.me', optionsWebsite);
