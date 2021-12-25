@@ -14,7 +14,7 @@ module.exports = async function createOgImage(title) {
     }
 
     // Title
-    let textToSVG = TextToSVG.loadSync(path.join(__dirname, '../../fonts/IBMPlexSans-Semibold.otf'));
+    let textToSVG = TextToSVG.loadSync('./fonts/IBMPlexSans-SemiBold.otf');
 
     const optionsTitle1 = {x: 75, y: 390, fontSize: 50, attributes: {fill: 'hsl(0, 0%, 95%)'}};
     const optionsTitle2 = {x: 75, y: 445, fontSize: 50, attributes: {fill: 'hsl(0, 0%, 95%)'}};
@@ -23,7 +23,7 @@ module.exports = async function createOgImage(title) {
     const title2 = textToSVG.getPath(titleAsArray.join(" "), optionsTitle2);
      
     // Website
-    textToSVG = TextToSVG.loadSync(path.join(__dirname, '../../fonts/IBMPlexSans-Regular.otf'));
+    textToSVG = TextToSVG.loadSync('./fonts/IBMPlexSans-Regular.otf');
 
     const optionsWebsite = {x: 75, y: 520, fontSize: 30, attributes: {fill: 'hsl(180, 60%, 75%)'}};
     const website = textToSVG.getPath('martinschneider.me', optionsWebsite);

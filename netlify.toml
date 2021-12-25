@@ -1,6 +1,6 @@
 [functions]
     directory = "functions"
-    included_files = ["fonts/**"]
+    included_files = ["./fonts/*.otf"]
 
 
 [[redirects]]

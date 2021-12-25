@@ -11,7 +11,6 @@ async function handler(event, context) {
 
   try {
     console.log(`Generating OG for martinschneider.me with "${decodeURIComponent(content)}"`);
-
     const buffer = await createOgImage(decodeURIComponent(content));
 
     return {
