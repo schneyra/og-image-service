@@ -1,6 +1,5 @@
 const sharp = require('sharp');
 const TextToSVG = require('text-to-svg');
-const textToSVG = TextToSVG.loadSync();
 
 module.exports = async function createOgImage(title) {
     let titleAsArray = title.split(" ");
@@ -13,16 +12,20 @@ module.exports = async function createOgImage(title) {
         );
     }
 
-    const optionsTitle1 = {x: 75, y: 200, fontSize: 50, attributes: {fill: 'hsl(0, 0%, 95%)'}}; //390
-    const optionsTitle2 = {x: 75, y: 250, fontSize: 50, attributes: {fill: 'hsl(0, 0%, 95%)'}}; // 445
+    // Title
+    let textToSVG = TextToSVG.loadSync('./functions/og-image/IBMPlexSans-Semibold.otf');
+
+    const optionsTitle1 = {x: 75, y: 390, fontSize: 50, attributes: {fill: 'hsl(0, 0%, 95%)'}};
+    const optionsTitle2 = {x: 75, y: 445, fontSize: 50, attributes: {fill: 'hsl(0, 0%, 95%)'}};
      
     const title1 = textToSVG.getPath(firstPartOfTitle.join(" "), optionsTitle1);
     const title2 = textToSVG.getPath(titleAsArray.join(" "), optionsTitle2);
      
-    const optionsWebsite = {x: 75, y: 300, fontSize: 30, attributes: {fill: 'hsl(180, 60%, 75%)'}}; // 520
+    // Website
+    textToSVG = TextToSVG.loadSync('./functions/og-image/IBMPlexSans-Regular.otf');
+
+    const optionsWebsite = {x: 75, y: 520, fontSize: 30, attributes: {fill: 'hsl(180, 60%, 75%)'}};
     const website = textToSVG.getPath('martinschneider.me', optionsWebsite);
-
-
 
     let svg = (firstPartOfTitle, titleAsArray) => `
         <svg width="2400" height="1200" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
@@ -47,15 +50,6 @@ module.exports = async function createOgImage(title) {
             ${title1}
             ${title2}
             ${website}
-
-
-            <text x="75" y="390" text-anchor="left" font-size="50px" font-family="sans-serif" fill="hsl(0, 0%, 95%)" text-rendering="optimizeLegibility">${firstPartOfTitle.join(
-                " "
-            )}</text>
-            <text x="75" y="445" text-anchor="left" font-size="50px" font-family="sans-serif" fill="hsl(0, 0%, 95%)" text-rendering="optimizeLegibility">${titleAsArray.join(
-                " "
-            )}</text>
-            <text x="75" y="520" text-anchor="left" font-size="30px" font-family="monospace" fill="hsl(180, 60%, 75%)" text-rendering="optimizeLegibility">martinschneider.me</text>
         </svg>
         `;
 
